@@ -32,6 +32,7 @@ function getUsers() {
     usersNew = usersNew.map(element => new User(element.name, element.money, showMeTheMoneyFunc));
     usersNew.forEach(element => users.push(element));
     users[2].showMeTheMoney();
+    console.log(usersNew);
   });
 }
 
