@@ -5,27 +5,20 @@ class Persona {
   constructor(name, money) {
     this.name = name;
     this.money = money;
-  }
-  showMeTheMoney(money) {
-    console.log("el dinero del usuario es " + money);
+    this.showMeTheMoney=money;
   }
 }
-const usuariosInventados=[
-  {"name": "Marta", "money": "800"},
-  {"name": "Luis", "money": "1300"}
-]
-let persona1=new Persona("luis",500)
-usuariosInventados.push(persona1);
-usuariosInventados.forEach(elemento => {
-      console.log(elemento)
-});
+var usuariosInventados=[];
+
 function getUsers() {
   fetch("./users.json")
     .then(response => response.json())
     .then(data => {
       data.forEach(elemento => {
-        console.log(`${elemento.name} tiene ${elemento.money}`)
+        let users1=new Persona(elemento.name,elemento.money,elemento.showMeTheMoney);
+        usuariosInventados.push(users1);  
       });
+      console.log(usuariosInventados);
     });
 }
 
@@ -39,26 +32,6 @@ function getUsers() {
 
 // Cada instancia de "User" se irá añadiendo en el array "users" con el método "push".
 // Una vez hayáis añadido todas las instancias al array de usuarios, ejecutad el método "showMeTheMoney" del tercer usuario "Roberto".
-/*function getUsers() {
-  fetch("./users.json")
-    .then(response => response.json())
-    .then(usuarios => {
-      let user1 = new Persona("pepe",900,showMeTheMoneyFunc(900));
-      //usuarios = [...user1];
-      usuarios.push(user1)
-      console.log(usuarios);
-      data.forEach(elemento => {
 
-        );
-
-   
-      });
-
-    });
-}
-
-function showMeTheMoneyFunc(money) {
-  console.log("el dinero del usuario es " + money);
-}
 //lama a la función users
-getUsers();*/
+getUsers();
